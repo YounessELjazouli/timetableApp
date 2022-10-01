@@ -3,9 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-.homeWrapper{
-    margin-top: 5em;
-}
+
 .logoOfppt{
     width: 10em;
     height: 16vh;
@@ -42,27 +40,46 @@
 body{
     min-height: 100vh;
     max-height: fit-content;
-    background-image: url("../images/bg.jpg") ;
+
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: scroll;
 }
 
 
-.dashFiliere,.dashFormateur,.dashGroupe,.dashEmploiParTemps,.dashModule,.dashSalle,.salleDispoDash,.dashCours{
-    background-color: #ffffff;
-    min-height: 100vh;
-    max-height: fit-content;
 
+form{
+    display: flex;
+    flex-direction: row;
 }
-.filiere_image,.formateur_image,.groupe_image,.news_image,.module_image,.salle_image,.dispoSalle_image,.cours_image{
-    margin-top: 5em;
-    width: 100%;
-    height: 15em;
-}
-.mainFiliere,.mainFormateur,.mainGroup,.mainVoirEDT,.mainModule,.mainSalle,.mainSalleDispo,.mainCours{
-    margin-top: 5em;
+
+form .form-floating input,select.form-control{
+    flex:1;
+    width: 180px;
+    margin-left: 0.3em !important;
+    height:7vh;
 }
 #filiereList{
     margin-inline: end;
+}
+
+.dashFiliere,.dashGroupe,.dashSalle{
+    display:flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+.tempMsg{
+    font-family: 'Times New Roman', Times, serif;
+    font-size:3em;
+    font-weight:900;
+    color:#383838;
+    text-shadow:4px,4px,3px #000;
+    margin-block:2em;
+}
+.breakline{
+    display: block;
+}
+
+.card-body img{
+    height: 30vh;
 }

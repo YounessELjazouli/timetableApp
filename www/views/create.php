@@ -143,6 +143,68 @@
         }
         
     }
+    if(isset($_POST['getfiliereM'])){
+        $filiere = $_POST['getfiliereM'];
+        $select = new SQLiteSelect($cnx);
+        $modules = $select->getModulesPerFiliere($filiere);
+        if(count($modules)>0){
+            echo "<table class=' table1 table table-secondary table-striped mt-5 '><thead><tr><td>Code de Salle</td><td>Type de Salle</td><td>Masse Horaire</td></tr></thead><tbody>";
+            foreach($modules as $module){
+                echo "<tr><td>".$module['codeModule']."</td><td>".$module['titreModule']."<td>".$module['masseHoraire']."</td></td></tr>";
+            }
+            echo "</tbody></table></div>";
+        }else{
+            echo "<center><p class='tempMsg'>Section Vide <i class='fa-solid fa-exclamation-circle'></i></p> <p>Aucun Module enrégistrer pour ce filiére</p> </center>";
+        }
+        
+    }
+    if(isset($_POST['SalleDispojoursC'])){
+        $joursC = $_POST['SalleDispojoursC'];
+        $semaineC = $_POST['semaineC'];
+        $select = new SQLiteSelect($cnx);
+        echo "<div class='container-fluid'><div class='row'>";
+        $salles1 = $select->getSalleDisponible($semaineC,$joursC,12);
+        echo "<div class='col-sm-4'><h3 class='text-center'>08H30MIN -> 13H:15MIN</h3><table class=' table1 table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles1 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div>";
+
+        $salles2 = $select->getSalleDisponible2($semaineC,$joursC,1,12);
+        echo "<div class='col-sm-4'><h3 class='text-center'>08H30MIN -> 10H:50MIN</h3><table class='table2 table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles2 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div>";
+
+        $salles3 = $select->getSalleDisponible2($semaineC,$joursC,2,12);
+        echo "<div class='col-sm-4'><h3 class='text-center'>11H10MIN -> 13H:15MIN</h3><table class='table3 table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles3 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div>";
+
+        $salles4 = $select->getSalleDisponible($semaineC,$joursC,34);
+        echo "<div class='col-sm-4'><h3 class='text-center'>13H30MIN -> 18H:30MIN</h3><table class='table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles4 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div>";
+
+        $salles5 = $select->getSalleDisponible2($semaineC,$joursC,3,34);
+        echo "<div class='col-sm-4'><h3 class='text-center'>13H30MIN -> 15H:50MIN</h3><table class='table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles5 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div>";
+
+        $salles6 = $select->getSalleDisponible2($semaineC,$joursC,4,34);
+        echo "<div class='col-sm-4'><h3 class='text-center'>16H10MIN -> 18H:30MIN</h3><table class='table table-secondary table-striped '><thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr></thead><tbody>";
+        foreach($salles6 as $salle){
+            echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+        }
+        echo "</tbody></table></div></div></div>";
+    }
 ?>
 
 

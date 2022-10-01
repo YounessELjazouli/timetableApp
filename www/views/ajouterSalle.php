@@ -10,11 +10,10 @@
 
 <?php include 'dashMenu.php'; ?>
 
+<div class="col-sm-11">
 <div  class="container-fluid" id="content-add-salle">
     <div class="row">
-        <div class="col-sm-2 dashSalle">
-            <img src="../images/salle.jpg" class="salle_image">
-            <h4 class="text-center">Ajouter une Salle : </h4>
+        <div class="col-sm-12 dashSalle">
             <div class="addTeacherFormWrapper">
                 <span id="message"></span>
                 <form method="POST" id="salleForm">
@@ -29,26 +28,28 @@
                         <option value="atelier">Atelier</option>
                     </select>
                     <div class="input-group mb-3">
-                        <button type="button" class=" my-3 btn btn-success" id="submit" name="ajouterSalle"  onclick="save_class();return false;">Ajouter La salle</button>
+                        <button type="button" class=" my-3 btn btn-success mx-3" id="submit" name="ajouterSalle"  onclick="save_class();return false;">Ajouter La salle</button>
                     </div>
                 </form>
             </div>
         </div>
-    <div class='col-sm-8 mainSalle'>
-        <div id="salleList">
-            <?php
-                $select = new SQLiteSelect($cnx);
-                $salles = $select->getSalles();
-                echo "<center><table class='table table-warning table-striped w-75'>
-                <thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr><tbody>";
-                foreach($salles as $salle){
-                    echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
-                }
-                echo "</tbody></table>";
-            ?>
+        <div class='col-sm-11 mainSalle'>
+            <div id="salleList">
+                <?php
+                    $select = new SQLiteSelect($cnx);
+                    $salles = $select->getSalles();
+                    echo "<center><table class='table table-warning table-striped w-75'>
+                    <thead><tr><td>Code de Salle</td><td>Type de Salle</td></tr><tbody>";
+                    foreach($salles as $salle){
+                        echo "<tr><td>".$salle['codeSalle']."</td><td>".$salle['typeSalle']."</td></tr>";
+                    }
+                    echo "</tbody></table>";
+                ?>
+            </div>
         </div>
     </div>
-    </div>
+</div>
+</div>
     <script>
         function save_class(){
             var form_element = document.getElementsByClassName('form-control');

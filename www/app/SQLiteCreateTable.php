@@ -24,11 +24,11 @@ class SQLiteCreateTable {
      * create tables 
      */
     public function createTables() {
-        $commands = ['CREATE TABLE "salle" (
+        $commands = ['CREATE TABLE IF NOT EXISTS "salle" (
             "codeSalle"	TEXT,
             "typeSalle"	TEXT,
             PRIMARY KEY("codeSalle")
-        )','CREATE TABLE "formateur" (
+        )','CREATE TABLE IF NOT EXISTS "formateur" (
             "idFormateur"	INTEGER,
             "nom"	TEXT,
             "prenom"	TEXT,
@@ -36,28 +36,28 @@ class SQLiteCreateTable {
             "codeSalle"	TEXT,
             PRIMARY KEY("idFormateur" AUTOINCREMENT),
             FOREIGN KEY("codeSalle") REFERENCES "salle"("codeSalle")
-        )','CREATE TABLE "module" (
+        )','CREATE TABLE IF NOT EXISTS "module" (
             "codeModule"	TEXT,
             "titreModule"	BLOB,
             "masseHoraire"	TEXT,
             PRIMARY KEY("codeModule")
-        )','CREATE TABLE "filiere" (
+        )','CREATE TABLE IF NOT EXISTS "filiere" (
             "codeFiliere"	TEXT,
             "nomFiliere"	TEXT,
             PRIMARY KEY("codeFiliere")
-        )','CREATE TABLE "groupe" (
+        )','CREATE TABLE IF NOT EXISTS "groupe" (
             "codeGroupe"	TEXT,
             "codeFiliere"	TEXT,
             "annee"	TEXT,
             PRIMARY KEY("codeGroupe"),
             FOREIGN KEY("codeFiliere") REFERENCES "filiere"("codeFiliere") ON DELETE CASCADE ON UPDATE CASCADE
-        )','CREATE TABLE "groupe_module" (
-            "codeGroupe"	TEXT,
+        )','CREATE TABLE IF NOT EXISTS "filiere_module" (
+            "codeFiliere"	TEXT,
             "codeModule"	TEXT,
-            PRIMARY KEY("codeGroupe","codeModule"),
-            FOREIGN KEY("codeGroupe") REFERENCES "groupe"("codeGroupe") ON DELETE CASCADE ON UPDATE CASCADE,
+            PRIMARY KEY("codeFiliere","codeModule"),
+            FOREIGN KEY("codeFiliere") REFERENCES "filiere"("codeFiliere") ON DELETE CASCADE ON UPDATE CASCADE,
             FOREIGN KEY("codeModule") REFERENCES "module"("codeModule") ON DELETE CASCADE ON UPDATE CASCADE
-        )','CREATE TABLE "semaines" (
+        )','CREATE TABLE IF NOT EXISTS "semaines" (
             "idSemaine"	INTEGER,
             "dateDebutSemaine"	TEXT,
             "dateFinSemaine"	TEXT,

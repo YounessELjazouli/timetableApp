@@ -61,15 +61,15 @@
 <body>
 <?php include 'dashMenu.php'; ?>
 
+<div class="col-sm-11">
 <div  class="container-fluid" id="content-add-course">
     <div class="row">
-        <div class="col-sm-4 dashCours">
-            <img src="../images/cours.jpg" class="cours_image">
-            <h4 class="text-center">Organiser un cours : </h4>
+        <div class="col-sm-11 dashCours">
             <div class="addTeacherFormWrapper">
                 <span id="message"></span>
                 <form method="POST" id="coursForm">
 
+                    <div class="breakline">
                     <select class="form-select form-control my-3" aria-label="Default select example" name="formateurC" id="formateurC" onchange="getSalle(this.value);">
                         <option disabled Selected>Choisir le formateur/la formatrice :</option>
                         <?php
@@ -86,7 +86,9 @@
                     <select class="form-select form-control my-3" aria-label="Default select example" name="salleC" id="salleC" >
                         <option disabled Selected>Choisir la salle de formateur :</option>
                     </select>
+                    </div>
 
+                    <div class="breakline">
                     <select class="form-select form-control my-3" aria-label="Default select example" name="filiereC" id="filiereC" onchange="getGroupe(this.value);getModule(this.value)">
                         <option Selected disabled>Choisir le Filiere  :</option>
                         <?php
@@ -101,7 +103,9 @@
                     <select class="form-select form-control my-3" aria-label="Default select example" name="groupeC" id="groupeC">
                         <option disabled Selected>Choisir le groupe  :</option>
                     </select>
+                    </div>
 
+                    <div class="breakline">
                     <select class="form-select form-control my-3" aria-label="Default select example" name="moduleC" id="moduleC">
                         <option disabled Selected>Choisir Le Module :</option>
                     </select>
@@ -115,6 +119,7 @@
                         <option value="vendredi">Vendredi</option>
                         <option value="samedi">Samedi</option>
                     </select>
+                    </div>
                     <select class="form-select form-control my-3" aria-label="Default select example" name="heureC">
                         <option disabled Selected>Choisir L'horaire de cours :</option>
                         <option value="1">08:30 <=> 10:50</option>
@@ -124,60 +129,64 @@
                         <option value="4">16:10 <=> 18:30</option>
                         <option value="34">13:30 <=> 18:30</option>
                     </select>
-                    <select class="form-select form-control-1 my-3" aria-label="Default select example" name="semaineC" multiple size=8 id="weeks">
-                        <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
+                    <div id="breakline">
+                        <select class="form-select form-control-1 my-3" aria-label="Default select example" name="semaineC" multiple size=8 id="weeks">
+                            <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
 
-                        <?php
-                            $select2 = new SQLiteSelect($cnx);
-                            $weeks = $select2->getSemaines();
-                            foreach($weeks as $week){
-                                echo "<option value='".$week['idSemaine']."'> De ".$week['dateDebutSemaine']." à ".$week['dateFinSemaine']."</option>";
-                            }
-                        ?>
-                    </select>
+                            <?php
+                                $select2 = new SQLiteSelect($cnx);
+                                $weeks = $select2->getSemaines();
+                                foreach($weeks as $week){
+                                    echo "<option value='".$week['idSemaine']."'> De ".$week['dateDebutSemaine']." à ".$week['dateFinSemaine']."</option>";
+                                }
+                            ?>
+                        </select>
 
-                    
-                    <div class="input-group my-3">
-                        <button type="button" class="btn btn-success" id="submit" name="ajouterSalle"  onclick="save_class();return false;">Ajouter le cours à l'emploi de temps</button>
+                        
+                        <div class="input-group my-3">
+                            <button type="button" class="btn btn-success" id="submit" name="ajouterSalle"  onclick="save_class();return false;">Ajouter le cours à l'emploi de temps</button>
+                        </div>
                     </div>
+
                 </form>
             </div>
         </div>
-        <div class="col-sm-8 mainCours">
-        <form  class="col-sm-10 d-block mx-auto" id="content-view-timetable">
-        <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="filiereE" id="filiereE" onchange="getGroupe(this.value);">
-            <option Selected disabled>Choisir le Filiere  :</option>
-            <?php
-            $select1 = new SQLiteSelect($cnx);
-            $filieres = $select1->getFilieres();
-            foreach($filieres as $filiere){
-                echo "<option value='".$filiere['codeFiliere']."'>".$filiere['codeFiliere']."</option>";
-            }
-            ?>
-        </select>
-
-        <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="groupeE" id="groupeE">
-            <option disabled Selected>Choisir le groupe  :</option>
-        </select>
-
-        <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="semaineE" id="weeks">
-                    <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
-
+        <div class="col-sm-12 mainCours">
+            <form  class="col-sm-12 d-block mx-auto" id="content-view-timetable">
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="filiereE" id="filiereE" onchange="getGroupe(this.value);">
+                    <option Selected disabled>Choisir le Filiere  :</option>
                     <?php
-                        $select2 = new SQLiteSelect($cnx);
-                        $weeks = $select2->getSemaines();
-                        foreach($weeks as $week){
-                            echo "<option value='".$week['idSemaine']."'> De ".$week['dateDebutSemaine']." à ".$week['dateFinSemaine']."</option>";
-                        }
+                    $select1 = new SQLiteSelect($cnx);
+                    $filieres = $select1->getFilieres();
+                    foreach($filieres as $filiere){
+                        echo "<option value='".$filiere['codeFiliere']."'>".$filiere['codeFiliere']."</option>";
+                    }
                     ?>
                 </select>
-<div class="input-group ">
-    <button type="button" class="btn btn-success d-block mx-auto" id="submit2" name="ajouterSalle"  onclick="viewTimetable();return false;">Voir l'emploi de temps</button>
-</div>
-</form>
-<span id="message2" class="emploi"></span>
+
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="groupeE" id="groupeE">
+                    <option disabled Selected>Choisir le groupe  :</option>
+                </select>
+
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="semaineE" id="weeks">
+                            <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
+
+                            <?php
+                                $select2 = new SQLiteSelect($cnx);
+                                $weeks = $select2->getSemaines();
+                                foreach($weeks as $week){
+                                    echo "<option value='".$week['idSemaine']."'> De ".$week['dateDebutSemaine']." à ".$week['dateFinSemaine']."</option>";
+                                }
+                            ?>
+                </select>
+                <div class="input-group ">
+                    <button type="button" class="btn btn-success d-block mx-auto" id="submit2" name="ajouterSalle"  onclick="viewTimetable();return false;">Voir l'emploi de temps</button>
+                </div>
+            </form>
+            <span id="message2" class="emploi"></span>
         </div>
     </div>
+</div>
 </div>
     <script>
         function save_class(){

@@ -7,27 +7,26 @@
 
 include 'dashMenu.php'; 
 ?>
+<div class="col-sm-11">
 <div  class="container-fluid" id="content-add-teacher">
     <div class="row">
-        <div class="col-sm-2 dashFormateur">
-            <img src="../images/formateur.jpg" class="formateur_image tmg-thumbnail">
-            <h4 class="text-center">Ajouter un formateur/formtrice : </h4>
+        <div class="col-sm-12 dashFormateur">
             <div class="addTeacherFormWrapper">
-                <span id="message"></span>
+                <center><span id="message"></span></center><br>
                 <form method="POST" id="formateurForm">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating ml-3">
                         <input type="text" class="form-control" id="nomF" name="nomF">
                         <label for="nomF">Nom</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="form-floating ml-3">
                         <input type="text" class="form-control" id="prenomF" name="prenomF">
                         <label for="prenomF">Prenom</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="form-floating ml-3">
                         <input type="number" class="form-control" id="masseHoraireF" name="masseHoraireF">
                         <label for="masseHoraireF">Masse Horaire</label>
                     </div>
-                    <select class="form-select form-control" aria-label="Default select example" name="salleF">
+                    <select class="form-control" aria-label="Default select example" name="salleF">
                         <option disabled>Choisir une salle pour le formateur/la formatrice :</option>
 
                         <?php
@@ -39,13 +38,13 @@ include 'dashMenu.php';
                             }
                         ?>
                     </select>
-                    <div class="input-group mb-3">
-                        <button type="button" class="btn btn-success my-3" name="addTeacher" id="submit" onclick="save_teacher();return false;"> Ajouter Formateur/Formatrice</button>
+                    <div class="input-group ml-3">
+                        <button type="button" class="btn btn-success w-50 mx-3" name="addTeacher" id="submit" onclick="save_teacher();return false;"> Ajouter Formateur/Formatrice</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-sm-8 mainFormateur">
+        <div class="col-sm-9 mainFormateur mt-5">
         <?php
             $select1 = new SQLiteSelect($cnx);
             $formateurs = $select1->getFormateurs();
@@ -75,6 +74,8 @@ include 'dashMenu.php';
         </div>
     </div>
 </div>
+</div>
+
 
     <script>
         function save_teacher(){
