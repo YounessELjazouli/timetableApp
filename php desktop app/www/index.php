@@ -29,11 +29,11 @@
             <div class="menuItem"><a href="views/ajouterF.php"><i class="fa-solid  fa-chalkboard-teacher"></i></a></div>
             <div class="menuItem"><a href="views/ajouterFiliere.php"><i class="fa-solid fa-school"></i></a></div>
             <div class="menuItem"><a href="views/ajouterGroupe.php"><i class="fa-solid fa-clock"></i></a></div>
-            <div class="menuItem"><a href="ajouterModule.php"><i class="fa-solid fa-book"></i></a></div>
-            <div class="menuItem"><a href="ajouterSalle.php"><i class="fa-solid fa-door-closed"></i></a></div>
-            <div class="menuItem"><a href="voirSalleDispo.php"><i class="fa-solid fa-door-open"></i></a></div>
-            <div class="menuItem"><a href="ajouterCours.php"><i class="fa-solid fa-calendar-check"></i></a></div>
-            <div class="menuItem"><a href="voirF.php"><i class="fa-solid fa-calendar"></i></a></div>
+            <div class="menuItem"><a href="views/ajouterModule.php"><i class="fa-solid fa-book"></i></a></div>
+            <div class="menuItem"><a href="views/ajouterSalle.php"><i class="fa-solid fa-door-closed"></i></a></div>
+            <div class="menuItem"><a href="views/voirSalleDispo.php"><i class="fa-solid fa-door-open"></i></a></div>
+            <div class="menuItem"><a href="views/ajouterCours.php"><i class="fa-solid fa-calendar-check"></i></a></div>
+            <div class="menuItem"><a href="views/voirF.php"><i class="fa-solid fa-calendar"></i></a></div>
 
         </nav>
         <div class="col-sm-11">
