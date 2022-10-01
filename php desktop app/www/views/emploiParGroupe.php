@@ -70,6 +70,7 @@
 </form>
 <span id="message" class="emploi"></span>
 
+    <script src="../bootsfonts/script.js"></script>
     
     <script>
        function viewTimetable(){
@@ -96,6 +97,10 @@
             }
 
         }
+
+        
+        
+    
     </script>
 </body>
 </html>

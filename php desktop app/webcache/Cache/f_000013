@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootsfonts/bootstrap-5.1.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bootsfonts/fontawesome-free-6.0.0-web/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.js"></script>
+    <title>Planning Cours :</title>
+    <script>
+        function getSalle(val){
+            $.ajax({
+                type:"POST",
+                url : "getSalle.php",
+                data : "idFormateur="+val,
+                success:function(data){
+                    $('#salleC').append(data);
+                    
+                }
+            })
+        }
+        function getGroupe(val){
+            $.ajax({
+                type:"POST",
+                url : "getGroupe.php",
+                data : "codeFiliere="+val,
+                success:function(data){
+                    $('#groupeC').append(data);
+                    $('#groupeE').append(data);
+                    
+                }
+            })
+        }
+
+
+        function getModule(val){
+            $.ajax({
+                type:"POST",
+                url : "getModule.php",
+                data : "codeFiliere="+val,
+                success:function(data){
+                    $('#moduleC').html(data);
+                }
+            })
+        }
+            </script>
+
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootsfonts/bootstrap-5.1.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootsfonts/fontawesome-free-6.0.0-web/css/all.css">
+    <link rel="stylesheet" href="../bootsfonts/style.css">
+    <script src="../bootsfonts/jquery.js"></script>
+    <script src="../bootsfonts/script.js" defer></script>
+    <title>Accueil</title>
+    <style>
+    .sideBarMenu{
+      background-color:black;
+      min-height:100vh;
+      max-height:fit-content;
+      padding:0 !important;
+    }
+    .menuItem{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:10vh;
+      
+    }
+    .menuItem a i{
+      color:#fff;
+      font-size:1.3em;
+    }
+    .menuItem:hover{
+      background-color:#383838;
+    }
+</style>
+</head>
+<body >
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-1 sideBarMenu">
+            <div class="menuItem"><a href="../index.php"><i class="fa-solid fa-home"></i></a></div>
+            <div class="menuItem"><a href="ajouterF.php"><i class="fa-solid  fa-chalkboard-teacher"></i></a></div>
+            <div class="menuItem"><a href="ajouterFiliere.php"><i class="fa-solid fa-school"></i></a></div>
+            <div class="menuItem"><a href="ajouterGroupe.php"><i class="fa-solid fa-clock"></i></a></div>
+            <div class="menuItem"><a href="ajouterModule.php"><i class="fa-solid fa-book"></i></a></div>
+            <div class="menuItem"><a href="ajouterSalle.php"><i class="fa-solid fa-door-closed"></i></a></div>
+            <div class="menuItem"><a href="voirSalleDispo.php"><i class="fa-solid fa-door-open"></i></a></div>
+            <div class="menuItem"><a href="ajouterCours.php"><i class="fa-solid fa-calendar-check"></i></a></div>
+            <div class="menuItem"><a href="voirF.php"><i class="fa-solid fa-calendar"></i></a></div>
+
+        </nav>
+
+
+<div class="col-sm-11">
+<div  class="container-fluid" id="content-add-course">
+    <div class="row">
+        <div class="col-sm-11 dashCours">
+            <div class="addTeacherFormWrapper">
+                <span id="message"></span>
+                <form method="POST" id="coursForm">
+
+                    <div class="breakline">
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="formateurC" id="formateurC" onchange="getSalle(this.value);">
+                        <option disabled Selected>Choisir le formateur/la formatrice :</option>
+                        <option value='13'>OULADABDESSLAM WIAM</option><option value='14'>HARMOUCHI FATIMA</option><option value='15'>EL FILALI AHMED</option><option value='16'>ES-SOFI REDOUANE</option><option value='17'>SOUDNI FATIMA ZAHRAE</option><option value='18'>EL ARFAOUI ATMANE</option><option value='19'>EDDAHIR NOUREDDINE</option><option value='20'>BENABED ABDELGHANI</option><option value='21'>HIRT ZAKARIA</option><option value='22'>OUFIR YASSINE</option><option value='23'>RHARIF ABDELLAH</option><option value='24'>BAALI SABAH</option><option value='25'>EL ADMOUNI AZIZ</option><option value='26'>EN-NAOUR NADIA</option><option value='27'>HADDOUN NEZHA</option><option value='28'>DIDI NOUREDDINE</option><option value='29'>NOUARA MERIEM</option><option value='30'>AMRANI HIND</option><option value='31'>BENHAROUSS ABDELHAY</option><option value='32'>BARA AICHA</option><option value='33'>RAHMAOUI SOUFIANE</option><option value='34'>dkqsdl qdkpds</option>
+
+                    </select>
+
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="salleC" id="salleC" >
+                        <option disabled Selected>Choisir la salle de formateur :</option>
+                    </select>
+                    </div>
+
+                    <div class="breakline">
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="filiereC" id="filiereC" onchange="getGroupe(this.value);getModule(this.value)">
+                        <option Selected disabled>Choisir le Filiere  :</option>
+                        <option value='TS_DD'>TS_DD</option><option value='Q_FGT'>Q_FGT</option><option value='TS_GC'>TS_GC</option><option value='TS_GT'>TS_GT</option><option value='TS_GE'>TS_GE</option><option value='TS_ID'>TS_ID</option><option value='T_MI'>T_MI</option>                    </select>
+
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="groupeC" id="groupeC">
+                        <option disabled Selected>Choisir le groupe  :</option>
+                    </select>
+                    </div>
+
+                    <div class="breakline">
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="moduleC" id="moduleC">
+                        <option disabled Selected>Choisir Le Module :</option>
+                    </select>
+
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="joursC">
+                        <option disabled Selected>Choisir le jours de cours :</option>
+                        <option value="lundi">Lundi</option>
+                        <option value="mardi">Mardi</option>
+                        <option value="mercredi">Mercredi</option>
+                        <option value="jeudi">Jeudi</option>
+                        <option value="vendredi">Vendredi</option>
+                        <option value="samedi">Samedi</option>
+                    </select>
+                    </div>
+                    <select class="form-select form-control my-3" aria-label="Default select example" name="heureC">
+                        <option disabled Selected>Choisir L'horaire de cours :</option>
+                        <option value="1">08:30 <=> 10:50</option>
+                        <option value="2">11:10 <=> 13:15</option>
+                        <option value="12">08:30 <=> 13:15</option>
+                        <option value="3">13:30 <=> 15:50</option>
+                        <option value="4">16:10 <=> 18:30</option>
+                        <option value="34">13:30 <=> 18:30</option>
+                    </select>
+                    <div id="breakline">
+                        <select class="form-select form-control-1 my-3" aria-label="Default select example" name="semaineC" multiple size=8 id="weeks">
+                            <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
+
+                            <option value='1'> De 2022-09-05 à 2022-09-11</option><option value='2'> De 2022-09-12 à 2022-09-18</option><option value='3'> De 2022-09-19 à 2022-09-25</option><option value='4'> De 2022-09-26 à 2022-10-02</option><option value='5'> De 2022-10-03 à 2022-10-09</option><option value='6'> De 2022-10-10 à 2022-10-16</option><option value='7'> De 2022-10-17 à 2022-10-23</option><option value='8'> De 2022-10-31 à 2022-11-06</option><option value='9'> De 2022-11-07 à 2022-11-13</option><option value='10'> De 2022-11-14 à 2022-11-20</option><option value='11'> De 2022-11-21 à 2022-11-27</option><option value='12'> De 2022-11-28 à 2022-12-04</option><option value='13'> De 2022-12-05 à 2022-12-11</option><option value='14'> De 2022-12-12 à 2022-12-18</option><option value='15'> De 2022-12-19 à 2022-12-25</option><option value='16'> De 2022-12-26 à 2022-12-01</option><option value='17'> De 2023-01-02 à 2023-01-08</option><option value='18'> De 2023-01-09 à 2023-01-15</option><option value='19'> De 2023-01-16 à 2023-01-22</option><option value='20'> De 2023-01-30 à 2023-02-05</option><option value='21'> De 2023-02-06 à 2023-02-12</option><option value='22'> De 2023-02-13 à 2023-02-19</option><option value='23'> De 2023-02-20 à 2023-02-26</option><option value='24'> De 2023-02-27 à 2023-03-05</option><option value='25'> De 2023-03-06 à 2023-03-12</option><option value='26'> De 2023-03-13 à 2023-03-19</option><option value='27'> De 2023-03-20 à 2023-03-26</option><option value='28'> De 2023-03-27 à 2023-04-05</option><option value='29'> De 2023-04-06 à 2023-04-12</option><option value='30'> De 2023-04-27 à 2023-05-05</option><option value='31'> De 2023-05-06 à 2023-05-12</option><option value='32'> De 2023-05-13 à 2023-05-19</option><option value='33'> De 2023-05-20 à 2023-05-26</option><option value='34'> De 2023-05-27 à 2023-06-02</option><option value='35'> De 2023-06-03 à 2023-06-09</option>                        </select>
+
+                        
+                        <div class="input-group my-3">
+                            <button type="button" class="btn btn-success" id="submit" name="ajouterSalle"  onclick="save_class();return false;">Ajouter le cours à l'emploi de temps</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-12 mainCours">
+            <form  class="col-sm-12 d-block mx-auto" id="content-view-timetable">
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="filiereE" id="filiereE" onchange="getGroupe(this.value);">
+                    <option Selected disabled>Choisir le Filiere  :</option>
+                    <option value='TS_DD'>TS_DD</option><option value='Q_FGT'>Q_FGT</option><option value='TS_GC'>TS_GC</option><option value='TS_GT'>TS_GT</option><option value='TS_GE'>TS_GE</option><option value='TS_ID'>TS_ID</option><option value='T_MI'>T_MI</option>                </select>
+
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="groupeE" id="groupeE">
+                    <option disabled Selected>Choisir le groupe  :</option>
+                </select>
+
+                <select class="form-select form-control2 w-50 d-block mx-auto my-4" aria-label="Default select example" name="semaineE" id="weeks">
+                            <option disabled Selected>choisir les semaines durant lesquelles ce cours aura lieu :</option>
+
+                            <option value='1'> De 2022-09-05 à 2022-09-11</option><option value='2'> De 2022-09-12 à 2022-09-18</option><option value='3'> De 2022-09-19 à 2022-09-25</option><option value='4'> De 2022-09-26 à 2022-10-02</option><option value='5'> De 2022-10-03 à 2022-10-09</option><option value='6'> De 2022-10-10 à 2022-10-16</option><option value='7'> De 2022-10-17 à 2022-10-23</option><option value='8'> De 2022-10-31 à 2022-11-06</option><option value='9'> De 2022-11-07 à 2022-11-13</option><option value='10'> De 2022-11-14 à 2022-11-20</option><option value='11'> De 2022-11-21 à 2022-11-27</option><option value='12'> De 2022-11-28 à 2022-12-04</option><option value='13'> De 2022-12-05 à 2022-12-11</option><option value='14'> De 2022-12-12 à 2022-12-18</option><option value='15'> De 2022-12-19 à 2022-12-25</option><option value='16'> De 2022-12-26 à 2022-12-01</option><option value='17'> De 2023-01-02 à 2023-01-08</option><option value='18'> De 2023-01-09 à 2023-01-15</option><option value='19'> De 2023-01-16 à 2023-01-22</option><option value='20'> De 2023-01-30 à 2023-02-05</option><option value='21'> De 2023-02-06 à 2023-02-12</option><option value='22'> De 2023-02-13 à 2023-02-19</option><option value='23'> De 2023-02-20 à 2023-02-26</option><option value='24'> De 2023-02-27 à 2023-03-05</option><option value='25'> De 2023-03-06 à 2023-03-12</option><option value='26'> De 2023-03-13 à 2023-03-19</option><option value='27'> De 2023-03-20 à 2023-03-26</option><option value='28'> De 2023-03-27 à 2023-04-05</option><option value='29'> De 2023-04-06 à 2023-04-12</option><option value='30'> De 2023-04-27 à 2023-05-05</option><option value='31'> De 2023-05-06 à 2023-05-12</option><option value='32'> De 2023-05-13 à 2023-05-19</option><option value='33'> De 2023-05-20 à 2023-05-26</option><option value='34'> De 2023-05-27 à 2023-06-02</option><option value='35'> De 2023-06-03 à 2023-06-09</option>                </select>
+                <div class="input-group ">
+                    <button type="button" class="btn btn-success d-block mx-auto" id="submit2" name="ajouterSalle"  onclick="viewTimetable();return false;">Voir l'emploi de temps</button>
+                </div>
+            </form>
+            <span id="message2" class="emploi"></span>
+        </div>
+    </div>
+</div>
+</div>
+    <script>
+        function save_class(){
+            var form_element = document.getElementsByClassName('form-control');
+            var form_data = new FormData();
+            for(var count = 0;count<form_element.length;count++){
+                form_data.append(form_element[count].name,form_element[count].value);
+            }
+
+            weeks = []
+            var semaines = document.querySelectorAll('#weeks option:checked')
+            for(semaine of semaines){
+                a = semaine.value
+                weeks.push(a)
+            }
+            form_data.append('semaineC',weeks)
+
+
+            document.getElementById('submit').disabled = true;
+            var ajax_request = new XMLHttpRequest();
+            ajax_request.open("POST","create.php");
+            ajax_request.send(form_data);
+            ajax_request.onreadystatechange = function(){
+                if(ajax_request.readyState == 4 && ajax_request.status == 200){
+                    document.getElementById('submit').disabled = false;
+                    document.getElementById('coursForm').reset();
+                    document.getElementById('message').innerHTML = ajax_request.responseText
+                    setTimeout(function(){
+                        document.getElementById('message').innerHTML = "";
+                    },3000)
+                    
+                }
+            }
+
+        }
+        function viewTimetable(){
+            var form_element = document.getElementsByClassName('form-control2');
+            var form_data = new FormData();
+            for(var count = 0;count<form_element.length;count++){
+                form_data.append(form_element[count].name,form_element[count].value);
+            }
+
+            document.getElementById('submit2').disabled = true;
+            var ajax_request = new XMLHttpRequest();
+            ajax_request.open("POST","viewtimeTable.php");
+            ajax_request.send(form_data);
+            ajax_request.onreadystatechange = function(){
+                if(ajax_request.readyState == 4 && ajax_request.status == 200){
+                    document.getElementById('submit2').disabled = false;
+                    document.getElementById('content-view-timetable').reset();
+                    document.getElementById('message2').innerHTML = ajax_request.responseText
+                    setTimeout(function(){
+                        document.getElementById('message2').innerHTML = "";
+                    },60*60*1000)
+                    
+                }
+            }
+
+        }
+    
+    </script>
+</body>
+</html>

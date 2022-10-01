@@ -35,7 +35,7 @@
             </div>
             <div class='col-sm-3 border'>
                 <div class='text3 border'>&nbsp;</div>
-                <div class='text4 border'>02/09/2022</div>
+                <div class='text4 border'><?php $now = new DateTime();echo $now->format('Y-m-d');  ?></div>
                 <div class='text5 border'>&nbsp;</div>
             </div>
         </div>
@@ -138,9 +138,10 @@
             </tr>
         </table>
     </div>
+    <button onclick="Export2Word('content-viewGroupeTimeTable');" class="btn btn-primary">Telecharger l'emploi de temps word</button>
+
+    <button onclick="save_as_pdf('content-viewGroupeTimeTable');" id="topdf" class="btn btn-primary">Telecharger l'emploi de temps pdf</button>
+
+
 
         
-
-
-
-

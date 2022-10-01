@@ -4,14 +4,14 @@
         "dpi_aware": true
     },
     "debugging": {
-        "show_console": true,
+        "show_console": false,
         "subprocess_show_console": false,
         "log_level": "DEBUG4",
         "log_file": "debug.log"
     },
     "main_window": {
-        "title": "PHP Desktop Chrome",
-        "icon": "",
+        "title": "ofppt temara",
+        "icon": "www/logo.ico",
         "default_size": [800, 600],
         "minimum_size": [640, 480],
         "maximum_size": [0, 0],
@@ -24,7 +24,7 @@
         "minimize_to_tray_message": "Minimized to tray"
     },
     "popup_window": {
-        "icon": "",
+        "icon": "www/logo.ico",
         "fixed_title": "",
         "center_relative_to_parent": true,
         "default_size": [800, 600]
